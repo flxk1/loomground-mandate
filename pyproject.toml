@@ -16,7 +16,13 @@ authors = [{ name = "Loomground Contributors" }]
 # kernel: it uses the shared verdict, the OPEN-dominant fold and the injected
 # ports, and reaches into no solver internals. It is imported by hosts, never by
 # solver, versum or governance.
-dependencies = ["loomground-solver>=0.4,<0.5"]
+# Consumed from solver: cross_subsumption.Verdict, issue_aggregation.{IssueAggregate,aggregate_issues},
+#   interop.EvidenceRef, ports.EvidenceProvider
+#   Every symbol above ships in 0.4.x, but the floor is 0.5: 0.5.0 is the release
+#   in which solver no longer carries this package's module. Against 0.4.x a host
+#   would install two implementations of the same thing — the extracted package
+#   and the solver module it was extracted from. Keep this in the 0.5 line.
+dependencies = ["loomground-solver>=0.5,<0.6"]
 dynamic = ["version"]
 
 [project.urls]
