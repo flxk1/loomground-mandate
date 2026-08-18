@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 flxk1
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "loomground-mandate"
+description = "Did this run serve the purpose it was given? A mandate, a trajectory, and the comparison between them. Both terms grounded in evidence through the solver's port; the judgement that a step serves or defeats a purpose supplied by whoever can be held to it."
+readme = "README.md"
+requires-python = ">=3.10"
+license = "Apache-2.0"
+license-files = ["LICENSES/Apache-2.0.txt", "LICENSES/CC-BY-4.0.txt"]
+authors = [{ name = "Loomground Contributors" }]
+# One narrow problem, one dependency. This package sits *above* the reasoning
+# kernel: it uses the shared verdict, the OPEN-dominant fold and the injected
+# ports, and reaches into no solver internals. It is imported by hosts, never by
+# solver, versum or governance.
+dependencies = ["loomground-solver>=0.4,<0.5"]
+dynamic = ["version"]
+
+[project.urls]
+Homepage = "https://github.com/flxk1/loomground-mandate"
+Repository = "https://github.com/flxk1/loomground-mandate"
+Issues = "https://github.com/flxk1/loomground-mandate/issues"
+
+[tool.setuptools.dynamic]
+version = { attr = "loomground_mandate._version.__version__" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["loomground_mandate*"]
+
+[tool.setuptools.package-data]
+loomground_mandate = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
