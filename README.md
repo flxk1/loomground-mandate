@@ -4,32 +4,7 @@
 
 **Did this run serve the purpose it was given?**
 
-A mandate, a trajectory, and the comparison between them. Both terms grounded in evidence through the solver's port; the judgement that a step serves or defeats a purpose supplied by whoever can be held to it.
-
-## Scope
-
-One problem. This package answers the question above and nothing adjacent to it.
-If a change here would also need a second question answered, it belongs in a
-different repository.
-
-## Where it sits
-
-```
-grammar ──▶ versum ──▶ solver ──▶ loomground-mandate
-```
-
-Above the reasoning kernel, never beside it. It uses `loomground-solver`'s shared
-three-valued verdict, its OPEN-dominant strict-AND fold, and its injected ports —
-and reaches into no solver internals. Nothing in the kernel imports this package,
-and nothing here imports governance, a corpus, or a domain.
-
-## Contract
-
-The package **reports**; it resolves nothing and decides nothing. Judgements
-arrive already made, from whoever can be held to them, and are compared rather
-than derived. Where a term is absent it escalates rather than passing: an
-unmeasured input is not the same as a satisfied one, and the two never collapse
-into a single value.
+Compares an observed trajectory with its declared mandate.
 
 ## Install
 
@@ -37,6 +12,30 @@ into a single value.
 pip install loomground-mandate
 ```
 
-## Licence
+## Usage
 
-Apache-2.0 for the code; CC-BY-4.0 for the prose in this README. See `NOTICE`.
+```python
+from loomground_mandate import Mandate, TrajectoryStep, detect, fold_divergences
+mandate = Mandate(EvidenceRef("engagement-letter", 120, 180), frozenset({"review"}))
+steps = [TrajectoryStep("step-1", EvidenceRef("log", 0, 10), serves=frozenset({"review"}))]
+fold_divergences(detect(mandate, steps, evidence=provider)).overall
+```
+
+## Interface
+
+- inputs: `Mandate(evidence: EvidenceRef, purposes)` · `TrajectoryStep(ref, evidence, serves, defeats)` · `evidence: EvidenceProvider`
+- output: `Divergence(kind, ref, why)`; `KINDS`: `ungrounded` · `defeats-purpose` · `out-of-mandate` · `unserved`
+- `fold_divergences(divergences) → IssueAggregate`
+- from solver: `cross_subsumption.Verdict` · `interop.EvidenceRef` · `ports.EvidenceProvider`
+
+## Family
+
+Diagnostic operator; consumes `loomground-solver` 0.5; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-mandate`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
+
+## Status
+
+0.1.0 · 22 tests · Python >=3.10 · solver 0.5
+
+## License
+
+Apache-2.0 `LICENSES/Apache-2.0.txt` (code) · CC-BY-4.0 `LICENSES/CC-BY-4.0.txt` (README) · `NOTICE`
