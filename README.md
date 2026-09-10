@@ -6,6 +6,10 @@
 
 Compares an observed trajectory with its declared mandate.
 
+## Problem
+
+A run finishes; nobody checks it did what it was told. Compares the trajectory to the mandate and names each divergence.
+
 ## Install
 
 ```
@@ -17,8 +21,18 @@ pip install loomground-mandate
 ```python
 from loomground_mandate import Mandate, TrajectoryStep, detect, fold_divergences
 mandate = Mandate(EvidenceRef("engagement-letter", 120, 180), frozenset({"review"}))
-steps = [TrajectoryStep("step-1", EvidenceRef("log", 0, 10), serves=frozenset({"review"}))]
-fold_divergences(detect(mandate, steps, evidence=provider)).overall
+steps = [TrajectoryStep("step-1", EvidenceRef("log", 0, 10), serves=frozenset({"review"})),
+         TrajectoryStep("step-2", EvidenceRef("log", 10, 20), serves=frozenset({"billing"}))]
+divs = detect(mandate, steps, evidence=provider)
+divs, fold_divergences(divs).overall
+```
+
+## Example
+
+```
+in : the Usage snippet; provider verifies engagement-letter and log
+out: Divergence(kind='out-of-mandate', ref='step-2', why='serves no purpose the mandate declares')
+     Verdict.NOT_SATISFIED
 ```
 
 ## Interface
