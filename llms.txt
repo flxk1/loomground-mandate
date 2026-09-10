@@ -1,0 +1,32 @@
+# loomground-mandate
+
+> Compares an observed trajectory with its declared mandate.
+
+## Problem
+A run finishes; nobody checks it did what it was told. Compares the trajectory to the mandate and names each divergence.
+
+## Install
+```
+pip install loomground-mandate
+```
+
+## Usage
+```python
+from loomground_mandate import Mandate, TrajectoryStep, detect, fold_divergences
+mandate = Mandate(EvidenceRef("engagement-letter", 120, 180), frozenset({"review"}))
+steps = [TrajectoryStep("step-1", EvidenceRef("log", 0, 10), serves=frozenset({"review"})),
+         TrajectoryStep("step-2", EvidenceRef("log", 10, 20), serves=frozenset({"billing"}))]
+divs = detect(mandate, steps, evidence=provider)
+divs, fold_divergences(divs).overall
+```
+
+## Interface
+- inputs: `Mandate(evidence: EvidenceRef, purposes)` · `TrajectoryStep(ref, evidence, serves, defeats)` · `evidence: EvidenceProvider`
+- output: `Divergence(kind, ref, why)`; `KINDS`: `ungrounded` · `defeats-purpose` · `out-of-mandate` · `unserved`
+- `fold_divergences(divergences) → IssueAggregate`
+- from solver: `cross_subsumption.Verdict` · `interop.EvidenceRef` · `ports.EvidenceProvider`
+
+## Family
+Diagnostic operator; consumes `loomground-solver` 0.5; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-mandate`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
+
+Language: loomground — guide https://github.com/flxk1/loomground/blob/main/llms.txt (the .lg language an agent reads, emits, validates); catalogue https://github.com/flxk1/loomground/blob/main/CATALOGUE.json
