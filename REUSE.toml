@@ -19,7 +19,8 @@ SPDX-FileCopyrightText = "2026 flxk1"
 SPDX-License-Identifier = "CC-BY-4.0"
 
 [[annotations]]
-path = [".gitignore", "NOTICE"]
+path = [  "requirements-dev.txt",
+".gitignore", "NOTICE"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 flxk1"
 SPDX-License-Identifier = "Apache-2.0"
