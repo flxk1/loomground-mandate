@@ -21,8 +21,8 @@ authors = [{ name = "Loomground Contributors" }]
 #   Every symbol above ships in 0.4.x, but the floor is 0.5: 0.5.0 is the release
 #   in which solver no longer carries this package's module. Against 0.4.x a host
 #   would install two implementations of the same thing — the extracted package
-#   and the solver module it was extracted from. Keep this in the 0.5 line.
-dependencies = ["loomground-solver>=0.5,<0.6"]
+#   and the solver module it was extracted from. Keep the floor at 0.5.
+dependencies = ["loomground-solver>=0.5,<0.7"]
 dynamic = ["version"]
 
 [project.optional-dependencies]

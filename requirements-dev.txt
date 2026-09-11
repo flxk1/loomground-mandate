@@ -1,4 +1,4 @@
 # Git-pinned first-party planes (no index yet). Install BEFORE `pip install .` so the ranges resolve.
-loomground-governance @ git+https://github.com/flxk1/loomground-governance@efa508860c50e51e1d75ce0f863a0bd6958c90a0
-loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@c93f4de657f04546f687966d4978d40e25693c2d
-loomground-solver @ git+https://github.com/flxk1/loomground-solver@afe2fa0be7089163735bdd73b20bbb3464ade25d
+loomground-governance @ git+https://github.com/flxk1/loomground-governance@270e11d0bbded46c810b2fe56559323d6dcd969a
+loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@35f8eabdc533b275a086b20c8d7a161f4acc46a8
+loomground-solver @ git+https://github.com/flxk1/loomground-solver@5b72f71ebd1f732b4e713b51de15d3ac565faa96
