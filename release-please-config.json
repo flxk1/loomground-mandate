@@ -5,7 +5,9 @@
       "release-type": "python",
       "package-name": "loomground-mandate",
       "changelog-path": "CHANGELOG.md",
-      "version-file": "src/loomground_mandate/_version.py"
+      "extra-files": [
+        "src/loomground_mandate/_version.py"
+      ]
     }
   }
 }
