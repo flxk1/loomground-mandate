@@ -44,11 +44,11 @@ out: Divergence(kind='out-of-mandate', ref='step-2', why='serves no purpose the 
 
 ## Family
 
-Diagnostic operator; consumes `loomground-solver` 0.5; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-mandate`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
+Diagnostic operator; consumes `loomground-solver` 0.5–0.6; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-mandate`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
 
 ## Status
 
-0.1.0 · 22 tests · Python >=3.10 · solver 0.5
+0.1.0 · 22 tests · Python >=3.10 · solver 0.5–0.6
 
 ## License
 
