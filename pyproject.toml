@@ -12,7 +12,8 @@ requires-python = ">=3.10"
 license = "Apache-2.0"
 license-files = ["LICENSES/Apache-2.0.txt", "LICENSES/CC-BY-4.0.txt"]
 authors = [{ name = "Loomground Contributors" }]
-# One narrow problem, one dependency. This package sits *above* the reasoning
+# One narrow problem, one dependency — solver, whose own two language packs
+# come with it. This package sits *above* the reasoning
 # kernel: it uses the shared verdict, the OPEN-dominant fold and the injected
 # ports, and reaches into no solver internals. It is imported by hosts, never by
 # solver, versum or governance.
@@ -22,13 +23,18 @@ authors = [{ name = "Loomground Contributors" }]
 #   in which solver no longer carries this package's module. Against 0.4.x a host
 #   would install two implementations of the same thing — the extracted package
 #   and the solver module it was extracted from. Keep the floor at 0.5.
-dependencies = ["loomground-solver>=0.5,<0.7"]
+# First-party siblings are direct git references, not ranges: no index serves this
+# family. Each ref is the release tag loomground's RELEASES.json records, and the full
+# transitive closure is declared, because those tagged commits still carry ranges that
+# only these URLs can satisfy.
+dependencies = [
+    "loomground-solver @ git+https://github.com/flxk1/loomground-solver@solver-v0.6.0",
+    "loomground-deontic @ git+https://github.com/flxk1/loomground-deontic@loomground-deontic-v0.2.1",
+    "loomground-governance @ git+https://github.com/flxk1/loomground-governance@loomground-governance-v0.11.1",
+]
 dynamic = ["version"]
 
 [project.optional-dependencies]
-# Exact revisions CI resolves. The reasoning kernel this package sits above,
-# plus the two language packs it depends on — pinned rather than ranged, because
-# neither is published to an index yet and a range would resolve to nothing.
 dev = [
     "pytest==9.1.1",
 ]
