@@ -13,16 +13,16 @@ A run finishes; nobody checks it did what it was told. Compares the trajectory t
 ## Install
 
 ```
-pip install loomground-mandate
+pip install git+https://github.com/flxk1/loomground-mandate
 ```
 
 ## Usage
 
 ```python
 from loomground_mandate import Mandate, TrajectoryStep, detect, fold_divergences
-mandate = Mandate(EvidenceRef("engagement-letter", 120, 180), frozenset({"review"}))
-steps = [TrajectoryStep("step-1", EvidenceRef("log", 0, 10), serves=frozenset({"review"})),
-         TrajectoryStep("step-2", EvidenceRef("log", 10, 20), serves=frozenset({"billing"}))]
+mandate = Mandate(EvidenceRef("engagement-letter", span_start=120, span_end=180), frozenset({"review"}))
+steps = [TrajectoryStep("step-1", EvidenceRef("log", span_start=0, span_end=10), serves=frozenset({"review"})),
+         TrajectoryStep("step-2", EvidenceRef("log", span_start=10, span_end=20), serves=frozenset({"billing"}))]
 divs = detect(mandate, steps, evidence=provider)
 divs, fold_divergences(divs).overall
 ```
@@ -44,11 +44,15 @@ out: Divergence(kind='out-of-mandate', ref='step-2', why='serves no purpose the 
 
 ## Family
 
-Diagnostic operator; consumes `loomground-solver` 0.5–0.6; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-mandate`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
+Diagnostic operator; consumes `loomground-solver` 0.6.0; consumed by hosts. Pipeline: `source → loomground-ingest → loomground-versum → loomground-solver → loomground-mandate`. Operator contract: [spec/OPERATORS.md](https://github.com/flxk1/loomground/blob/main/spec/OPERATORS.md). [docs/operator.md](docs/operator.md).
 
 ## Status
 
-0.1.0 · 22 tests · Python >=3.10 · solver 0.5–0.6
+0.2.0 · 22 tests · Python >=3.10 · solver 0.6.0
+
+## How this is made
+
+The code and documentation are written with Loomground agents. The maintainer reads and corrects all of it.
 
 ## License
 
