@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.2.1](https://github.com/flxk1/loomground-mandate/compare/loomground-mandate-v0.2.0...loomground-mandate-v0.2.1) (2026-09-29)
+
+
+### Bug Fixes
+
+* release version source (extra-files marker), 0.2.0 ([7024442](https://github.com/flxk1/loomground-mandate/commit/70244429255e69a18aea9a99c2bb3fb56090904f))
+
+
+### Documentation
+
+* correct stale claims; add How this is made ([d7712c6](https://github.com/flxk1/loomground-mandate/commit/d7712c6566bd37e5faa3a4455fbd3febd2cb830a))
+* correct version, solver pin, install and example; How this is made ([bfcafda](https://github.com/flxk1/loomground-mandate/commit/bfcafdaede959520038079cce25554009016ca79))
+* How this is made names no model vendor ([1d7bd31](https://github.com/flxk1/loomground-mandate/commit/1d7bd3176db480c6cd9ed11003fe8e0db2be92cb))
+
 ## [0.2.0](https://github.com/flxk1/loomground-mandate/compare/loomground-mandate-v0.1.0...loomground-mandate-v0.2.0) (2026-09-11)
 
 
